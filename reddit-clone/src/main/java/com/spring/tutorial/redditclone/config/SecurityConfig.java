@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.TemplateEngine;
 
 @Configuration
 @EnableWebSecurity
@@ -40,6 +41,9 @@ public class SecurityConfig {
     PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    @Bean
+    TemplateEngine templateEngine() {
+        return new TemplateEngine();
+    }
 
 }
