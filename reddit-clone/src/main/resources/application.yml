@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_reddit_clone
+    username: root
+    password: M@ney0116p
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+    show-sql: true
+  profiles:
+    active: dev
+  application:
+    name: reddit-clone
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    ssl: no
+    tls: tes
+    username: 6ea9383467ddfb
+    password: 6ea9383467ddfb
+    protocol: smtp
+server:
+  port: 8080
