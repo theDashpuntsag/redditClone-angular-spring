@@ -48,17 +48,17 @@ public class AuthService {
         userRepository.save(user);
 
         String token = generateVerificationToken(user);
+        VerificationToken verificationToken = new VerificationToken();
         mailService.sendEmail(new NotificationEmail("Please Activate your Account",
                 user.getEmail(), "Thank you for signing up to Spring Reddit, " +
                 "please click on the below url to activate your account : " +
                 "http://localhost:8080/api/auth/accountVerification/" + token));
     }
 
-    public void verigyAccount(String token) {
+    public void verifyAccount(String token) {
         Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
         verificationToken.orElseThrow(() -> new SpringRedditException("Invalid Token"));
         fetchUserAndEnable(verificationToken.get());
-
     }
 
 
@@ -69,6 +69,7 @@ public class AuthService {
         verificationToken.setToken(verificaitonToken);
         verificationToken.setUser(user);
 
+        verificationTokenRepository.save(verificationToken);
         return verificaitonToken;
     }
 
@@ -77,6 +78,5 @@ public class AuthService {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User not found"));
         user.setEnabled(true);
         userRepository.save(user);
-
     }
 }

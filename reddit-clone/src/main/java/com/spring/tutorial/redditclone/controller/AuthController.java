@@ -24,7 +24,7 @@ public class AuthController {
 
     @GetMapping("/accountVerification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
-        authService.verigyAccount(token);
-        return new ResponseEntity<>("", HttpStatus.OK);
+        authService.verifyAccount(token);
+        return new ResponseEntity<>("Your", HttpStatus.OK);
     }
 }
